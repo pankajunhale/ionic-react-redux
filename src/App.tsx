@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import List from './pages/List';
 import { home, list } from 'ionicons/icons';
 
+
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -36,24 +37,26 @@ const appPages: AppPage[] = [
   },
   {
     title: 'List',
-    url: '/home/list',
+    url: '/list',
     icon: list
   }
 ];
 
 const App: React.FC = () => (
+  
   <IonApp>
     <IonReactRouter>
       <IonSplitPane contentId="main">
         <Menu appPages={appPages} />
         <IonRouterOutlet id="main">
           <Route path="/home" component={Home} exact={true} />
-          <Route path="/home/list" component={List} exact={true} />
+          <Route path="/list" component={List} exact={true} />
           <Route path="/" render={() => <Redirect to="/home"/> } exact={true} />
         </IonRouterOutlet>
       </IonSplitPane>
     </IonReactRouter>
   </IonApp>
+  //</Provider>
 );
 
 export default App;

@@ -25,13 +25,16 @@ export class EmployeeSearchBarComponent extends Component<IEmployeeSearchBarComp
  
   render(){
     return(
-    <div>
+    <div >
      {/* <IonSearchbar      
      onIonChange={this.handleChange.bind(this)}
      value={this.props.term}
      placeholder={this.props.placeHolderName}>
      </IonSearchbar> */}
-     <input type='text' onChange={this.handleChange.bind(this)}></input>
+     <input type='text' 
+     placeholder="Search By Name..."
+     className="form-control mt-2" 
+     onChange={this.handleChange.bind(this)}></input>
      </div>
     )
   }  

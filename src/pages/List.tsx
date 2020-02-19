@@ -7,7 +7,7 @@ import { EmployeeDto } from '../model/EmployeeDTO';
 import { EmployeeSearchBarComponent } from '../components/EmployeeSearchBar';
 import { EmployeeDomainComponent } from '../components/EmployeeDomain';
 import { PaginationComponent } from '../components/Pagination';
-import { EmployeeListComponent } from '../components/EmployeeList';
+import { EmployeeListComponent, EmployeeListComponentNew } from '../components/EmployeeList';
 import { NoRecordFoundComponent } from '../widget/NoRecordFound';
 import { EmployeePaginationDto,EmployeeSearchTermDTO } from '../state/EmployeeList';
 import { EmployeeEmailDomainDTO } from '../model/EmployeeEmailDomainDTO';
@@ -30,6 +30,7 @@ interface IListPageProps {
   //onSearchTermChange:any;
   loadAllDomainFilter:any;
   gender:string;
+  //history:any;
 }
 interface IListPageState {
 }
@@ -47,6 +48,7 @@ class ListPage extends Component<AllProps>{
 
     this.props.loadAllEmployee("");
     this.props.loadAllDomainFilter();
+    console.log(props);
   }
 
   componentDidMount(){
@@ -57,9 +59,12 @@ class ListPage extends Component<AllProps>{
   }
   //all callbacks
   public onSearchTermChange = (value:string) =>{
+   
     this.props.loadAllEmployee(value);
   }
   public onDomainSelect = (data:any) =>{
+   // this.props.history.push("/view/307")    
+
     this.props.filterByDomain(data);
   }
   public onGenderSelect = (data:string) =>{
@@ -69,6 +74,7 @@ class ListPage extends Component<AllProps>{
   render(){
     return (   
       <div>
+        
       <IonPage>
         <IonHeader>
           <IonToolbar>
@@ -108,7 +114,8 @@ class ListPage extends Component<AllProps>{
                     onPrevious={this.props.onPrevious}
                   ></PaginationComponent>  
                   <NoRecordFoundComponent isDisplay={(this.props.myPagination.TotalRecords != 0)} ></NoRecordFoundComponent>        
-                  <EmployeeListComponent employeeList={this.props.employeeList}></EmployeeListComponent>
+                  <EmployeeListComponentNew employeeList={this.props.employeeList}></EmployeeListComponentNew>
+                  {/* <EmployeeListComponent employeeList={this.props.employeeList}></EmployeeListComponent> */}
                   <PaginationComponent
                     isDisableNext={this.props.myPagination.IsDisableNext}
                     isDisablePrevious={this.props.myPagination.IsDisablePrevious}

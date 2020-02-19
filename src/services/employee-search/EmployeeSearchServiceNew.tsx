@@ -1,10 +1,11 @@
-import { BehaviorSubject, combineLatest } from 'rxjs'
+import { BehaviorSubject, combineLatest, empty } from 'rxjs'
 import { EmployeeDto } from '../../model/EmployeeDTO';
 import { switchMap, map, flatMap, skip, take, toArray, tap  } from 'rxjs/operators';
 import {  of, from } from 'rxjs';
 import { EmployeeInfo } from '../../mock-data/EmployeeMockData';
 import * as _ from  'underscore'
 import { EmployeeEmailDomainDTO } from '../../model/EmployeeEmailDomainDTO';
+import { Observable } from 'redux';
 //import { EmployeeFilterInfo } from '../dto/EmployeeFilterInfoDto';
 
 
@@ -207,6 +208,18 @@ export class EmployeeServiceNew {
   public filterEmployeeByGender(data:string){
     this.setGender(data);
     return this.employeeResult$;
+  }
+
+  public findEmployeeById(id:number){
+      const employee = EmployeeInfo.find((item)=>{
+          return (item.id == id)
+      })
+      if(employee){
+        return of(new EmployeeDto(employee));
+      }
+      else{
+        return empty()
+      }
   }
 
 }

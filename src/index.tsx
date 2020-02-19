@@ -4,6 +4,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux';
 import configureStore from '../src/stores/StoreConfiguration';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 //const initialState = window.INITIAL_REDUX_STATE
 const store = configureStore();
